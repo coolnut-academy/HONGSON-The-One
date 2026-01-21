@@ -1,9 +1,10 @@
 // Firebase Configuration for HONGSON THE ONE
 // ============================================
-// This file initializes the Firebase app and exports Firestore instance.
+// This file initializes the Firebase app and exports Firestore and Storage instances.
 
 import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
+import { getStorage, FirebaseStorage } from "firebase/storage";
 
 // Firebase configuration object
 // These values are loaded from environment variables for security
@@ -25,4 +26,8 @@ const app: FirebaseApp = !getApps().length
 // Initialize Firestore Database
 const db: Firestore = getFirestore(app);
 
-export { app, db };
+// Initialize Firebase Storage
+const storage: FirebaseStorage = getStorage(app);
+
+export { app, db, storage };
+

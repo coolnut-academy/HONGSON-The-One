@@ -1,118 +1,73 @@
 "use client";
 
-import { useState } from "react";
-import { Sparkles, Settings, Search } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Sparkles, Settings, Search, Lock, Loader2, RefreshCw } from "lucide-react";
 import ZoneSwitcher from "./components/ZoneSwitcher";
 import AppGrid from "./components/AppGrid";
 import { AppData } from "./components/AppCard";
-
-// Mock Apps Data - Replace with Firebase data later
-const MockApps: AppData[] = [
-  {
-    id: "1",
-    name: "Google Classroom",
-    url: "https://classroom.google.com",
-    iconUrl: "https://www.gstatic.com/classroom/logo_square_rounded.svg",
-    zone: "both",
-    color: "from-green-500 to-green-600",
-  },
-  {
-    id: "2",
-    name: "Google Meet",
-    url: "https://meet.google.com",
-    iconUrl: "https://fonts.gstatic.com/s/i/productlogos/meet_2020q4/v6/web-96dp/logo_meet_2020q4_color_2x_web_96dp.png",
-    zone: "both",
-    color: "from-blue-500 to-cyan-500",
-  },
-  {
-    id: "3",
-    name: "Google Drive",
-    url: "https://drive.google.com",
-    iconUrl: "https://ssl.gstatic.com/images/branding/product/2x/drive_2020q4_48dp.png",
-    zone: "both",
-    color: "from-yellow-400 to-yellow-500",
-  },
-  {
-    id: "4",
-    name: "Canva",
-    url: "https://www.canva.com",
-    iconUrl: "https://static.canva.com/static/images/favicon-1.ico",
-    zone: "student",
-    color: "from-cyan-400 to-blue-500",
-  },
-  {
-    id: "5",
-    name: "Kahoot!",
-    url: "https://kahoot.com",
-    iconUrl: "https://kahoot.com/wp-content/themes/flavor/assets/favicons/apple-touch-icon-180x180.png",
-    zone: "student",
-    color: "from-purple-500 to-violet-600",
-  },
-  {
-    id: "6",
-    name: "Quizizz",
-    url: "https://quizizz.com",
-    iconUrl: "https://cf.quizizz.com/img/quizizz_logos/purple-brandmark-600x164.png",
-    zone: "student",
-    color: "from-indigo-500 to-purple-600",
-  },
-  {
-    id: "7",
-    name: "YouTube Edu",
-    url: "https://www.youtube.com/edu",
-    iconUrl: "https://www.youtube.com/s/desktop/5a580f0b/img/favicon_144x144.png",
-    zone: "student",
-    color: "from-red-500 to-red-600",
-  },
-  {
-    id: "8",
-    name: "E-Library",
-    url: "https://library.example.com",
-    iconUrl: "",
-    zone: "student",
-    color: "from-emerald-500 to-teal-600",
-  },
-  {
-    id: "9",
-    name: "Grade Book",
-    url: "https://gradebook.example.com",
-    iconUrl: "",
-    zone: "teacher",
-    color: "from-amber-500 to-orange-500",
-  },
-  {
-    id: "10",
-    name: "Admin Portal",
-    url: "https://admin.example.com",
-    iconUrl: "",
-    zone: "teacher",
-    color: "from-rose-500 to-pink-600",
-  },
-  {
-    id: "11",
-    name: "Lesson Planner",
-    url: "https://planner.example.com",
-    iconUrl: "",
-    zone: "teacher",
-    color: "from-sky-500 to-blue-600",
-  },
-  {
-    id: "12",
-    name: "Parent Connect",
-    url: "https://parent.example.com",
-    iconUrl: "",
-    zone: "teacher",
-    color: "from-violet-500 to-purple-600",
-  },
-];
+import AdminLoginModal from "./components/AdminLoginModal";
+import { getApps, AppDocument } from "@/lib/firestore";
 
 type Zone = "student" | "teacher";
 
+// Convert Firestore AppDocument to AppData format
+function toAppData(doc: AppDocument): AppData {
+  return {
+    id: doc.id || "",
+    name: doc.name,
+    url: doc.url,
+    iconUrl: doc.iconUrl,
+    zone: doc.zone,
+    color: doc.color,
+  };
+}
+
 export default function Home() {
-  const [currentZone, setCurrentZone] = useState<Zone>("teacher");
+  const [currentZone, setCurrentZone] = useState<Zone>("student");
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+  const [apps, setApps] = useState<AppData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  // Fetch apps from Firestore
+  const fetchApps = useCallback(async () => {
+    try {
+      setError("");
+      const fetchedApps = await getApps();
+      setApps(fetchedApps.map(toAppData));
+    } catch (err) {
+      console.error("Failed to fetch apps:", err);
+      setError("ไม่สามารถโหลดข้อมูลแอปได้");
+    } finally {
+      setIsLoading(false);
+    }
+  }, []);
+
+  // Load apps on mount
+  useEffect(() => {
+    fetchApps();
+  }, [fetchApps]);
+
+  // Check for showLogin query param (from middleware redirect)
+  useEffect(() => {
+    if (searchParams.get("showLogin") === "true") {
+      setIsLoginModalOpen(true);
+      // Clean up the URL
+      router.replace("/", { scroll: false });
+    }
+  }, [searchParams, router]);
+
+  // Handle successful login
+  const handleLoginSuccess = () => {
+    setIsLoginModalOpen(false);
+    router.push("/admin/dashboard");
+  };
 
   // Filter apps based on current zone
-  const filteredApps = MockApps.filter(
+  const filteredApps = apps.filter(
     (app) => app.zone === currentZone || app.zone === "both"
   );
 
@@ -144,6 +99,13 @@ export default function Home() {
 
             {/* Action Buttons */}
             <div className="flex items-center gap-2">
+              <button
+                onClick={fetchApps}
+                className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md"
+                title="รีเฟรช"
+              >
+                <RefreshCw className={`w-5 h-5 ${isLoading ? "animate-spin" : ""}`} />
+              </button>
               <button className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md">
                 <Search className="w-5 h-5" />
               </button>
@@ -177,21 +139,62 @@ export default function Home() {
 
         {/* Glass Card Container */}
         <div className="glass-card p-4 sm:p-6 md:p-8">
-          <AppGrid
-            apps={filteredApps}
-            emptyMessage={`ไม่พบแอปพลิเคชันสำหรับ${currentZone === "student" ? "นักเรียน" : "ครู"
-              }`}
-          />
+          {isLoading ? (
+            /* Loading State */
+            <div className="flex flex-col items-center justify-center py-12">
+              <Loader2 className="w-10 h-10 text-purple-500 animate-spin mb-4" />
+              <p className="text-slate-500">กำลังโหลดแอปพลิเคชัน...</p>
+            </div>
+          ) : error ? (
+            /* Error State */
+            <div className="flex flex-col items-center justify-center py-12">
+              <div className="w-16 h-16 rounded-2xl bg-red-100 flex items-center justify-center mb-4">
+                <Sparkles className="w-8 h-8 text-red-400" />
+              </div>
+              <p className="text-red-600 mb-4">{error}</p>
+              <button
+                onClick={fetchApps}
+                className="px-4 py-2 rounded-xl bg-purple-100 text-purple-700 font-medium hover:bg-purple-200 transition-all"
+              >
+                ลองใหม่อีกครั้ง
+              </button>
+            </div>
+          ) : (
+            /* Apps Grid */
+            <AppGrid
+              apps={filteredApps}
+              emptyMessage={`ไม่พบแอปพลิเคชันสำหรับ${currentZone === "student" ? "นักเรียน" : "ครู"
+                }`}
+            />
+          )}
         </div>
       </div>
 
       {/* Footer */}
       <footer className="text-center py-4">
-        <p className="text-xs text-slate-400">
-          Version 1.0.0 • Powered by{" "}
-          <span className="font-medium text-slate-500">COOLNUT Academy</span>
-        </p>
+        <div className="flex items-center justify-center gap-3">
+          <p className="text-xs text-slate-400">
+            Version 1.0.0 • Powered by{" "}
+            <span className="font-medium text-slate-500">COOLNUT Academy</span>
+          </p>
+          {/* Secret Admin Entrance - Subtle Lock Icon */}
+          <button
+            onClick={() => setIsLoginModalOpen(true)}
+            className="p-1.5 rounded-lg text-slate-300 hover:text-slate-500 hover:bg-slate-100/50 transition-all duration-300 opacity-50 hover:opacity-100"
+            aria-label="Admin Login"
+            title="Admin Access"
+          >
+            <Lock className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </footer>
+
+      {/* Admin Login Modal */}
+      <AdminLoginModal
+        isOpen={isLoginModalOpen}
+        onClose={() => setIsLoginModalOpen(false)}
+        onSuccess={handleLoginSuccess}
+      />
     </main>
   );
 }
