@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏫 HONGSON The One
 
-## Getting Started
+**HONGSON The One** คือเว็บแอปพลิเคชันสำหรับบริหารจัดการและรวบรวมบริการต่างๆ ภายในโรงเรียน/องค์กร (Hongson School) พัฒนาด้วย **Next.js 15 (App Router)** และ **TypeScript** โดยเน้นประสิทธิภาพ ความปลอดภัย และการใช้งานที่ลื่นไหล (Responsive Design) เชื่อมต่อข้อมูลแบบ Real-time ผ่าน **Firebase**
 
-First, run the development server:
+![Project Banner](public/logo.png)
+*(แนะนำ: คุณสามารถใส่ภาพ Screenshot หน้า Dashboard ของโปรเจคตรงนี้เพื่อให้เห็นภาพรวม UI)*
+
+---
+
+## 🚀 ฟีเจอร์หลัก (Key Features)
+
+* **Centralized Dashboard:** รวบรวมแอปพลิเคชันและลิงก์สำคัญต่างๆ ไว้ในที่เดียว แสดงผลแบบ Grid ที่สวยงาม
+* **Zone Management:** ระบบสลับโซน (Zone Switcher) เพื่อกรองเนื้อหาตามหมวดหมู่หรือพื้นที่การใช้งาน
+* **Secure Admin Access:** ระบบ Authentication สำหรับผู้ดูแลระบบ โดยใช้ Secret Key และ HTTP-only Cookies เพื่อความปลอดภัยสูงสุด
+* **Dynamic Content:** จัดการข้อมูลแอปพลิเคชันผ่าน Firebase Firestore (CRUD Operations)
+* **Modern UI/UX:** ดีไซน์ทันสมัยด้วย Tailwind CSS พร้อม Animation และ Transition ที่นุ่มนวล
+* **Responsive Design:** รองรับการใช้งานทั้งบน Desktop, Tablet และ Mobile
+
+---
+
+## 🛠️ Tech Stack
+
+โปรเจคนี้พัฒนาโดยใช้เทคโนโลยีที่ทันสมัยและเป็นที่นิยมในอุตสาหกรรม (Industry Standard):
+
+### **Frontend & Core**
+* ![Next.js](https://img.shields.io/badge/Next.js_15-black?style=flat&logo=next.js&logoColor=white) **Next.js 15:** ใช้ App Router ล่าสุดสำหรับการทำ Routing และ Server-side Rendering (SSR)
+* ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB) **React:** Library หลักสำหรับการสร้าง User Interface
+* ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) **TypeScript:** เพิ่ม Type Safety ช่วยลดบั๊กและทำให้โค้ดดูแลรักษาง่าย
+* ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) **Tailwind CSS:** Utility-first CSS framework สำหรับการจัดหน้าและดีไซน์
+
+### **Backend & Services**
+* ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=flat&logo=Firebase&logoColor=white) **Firebase:**
+    * **Firestore:** ฐานข้อมูล NoSQL สำหรับเก็บข้อมูลแอปพลิเคชัน
+    * **Storage:** สำหรับจัดเก็บรูปภาพและไฟล์สื่อ
+* **Next.js API Routes:** สร้าง Backend API ภายในตัวโปรเจค (Serverless Functions)
+
+### **Tools & Libraries**
+* **Lucide React:** ชุดไอคอนที่สวยงามและเบา
+* **ESLint:** ควบคุมคุณภาพโค้ดให้เป็นมาตรฐานเดียวกัน
+
+---
+
+## 📂 โครงสร้างโปรเจค (Folder Structure)
+
+โครงสร้างไฟล์ถูกจัดระเบียบตามมาตรฐาน Next.js App Router:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+src/
+├── app/
+│   ├── admin/           # หน้า Dashboard สำหรับผู้ดูแลระบบ
+│   ├── api/             # API Endpoints (Auth, Data fetching)
+│   ├── components/      # Reusable UI Components (Modal, Cards, Grid)
+│   ├── layout.tsx       # Root Layout
+│   └── page.tsx         # หน้า Homepage หลัก
+├── lib/
+│   ├── firebase.ts      # การตั้งค่าและเชื่อมต่อ Firebase
+│   └── ...
+└── public/              # Static assets (Images, Icons)
+นี่คือโค้ด README.md ฉบับสมบูรณ์ที่อัปเดตข้อมูลผู้พัฒนาเรียบร้อยแล้วครับ คุณสามารถ Copy ทั้งหมดไปวางในไฟล์ README.md ได้เลยครับ
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Markdown
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+# 🏫 HONGSON The One
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**HONGSON The One** คือเว็บแอปพลิเคชันสำหรับบริหารจัดการและรวบรวมบริการต่างๆ ภายในโรงเรียน/องค์กร (Hongson School) พัฒนาด้วย **Next.js 15 (App Router)** และ **TypeScript** โดยเน้นประสิทธิภาพ ความปลอดภัย และการใช้งานที่ลื่นไหล (Responsive Design) เชื่อมต่อข้อมูลแบบ Real-time ผ่าน **Firebase**
 
-## Learn More
+![Project Banner](public/logo.png)
+*(แนะนำ: คุณสามารถใส่ภาพ Screenshot หน้า Dashboard ของโปรเจคตรงนี้เพื่อให้เห็นภาพรวม UI)*
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🚀 ฟีเจอร์หลัก (Key Features)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* **Centralized Dashboard:** รวบรวมแอปพลิเคชันและลิงก์สำคัญต่างๆ ไว้ในที่เดียว แสดงผลแบบ Grid ที่สวยงาม
+* **Zone Management:** ระบบสลับโซน (Zone Switcher) เพื่อกรองเนื้อหาตามหมวดหมู่หรือพื้นที่การใช้งาน
+* **Secure Admin Access:** ระบบ Authentication สำหรับผู้ดูแลระบบ โดยใช้ Secret Key และ HTTP-only Cookies เพื่อความปลอดภัยสูงสุด
+* **Dynamic Content:** จัดการข้อมูลแอปพลิเคชันผ่าน Firebase Firestore (CRUD Operations)
+* **Modern UI/UX:** ดีไซน์ทันสมัยด้วย Tailwind CSS พร้อม Animation และ Transition ที่นุ่มนวล
+* **Responsive Design:** รองรับการใช้งานทั้งบน Desktop, Tablet และ Mobile
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tech Stack
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+โปรเจคนี้พัฒนาโดยใช้เทคโนโลยีที่ทันสมัยและเป็นที่นิยมในอุตสาหกรรม (Industry Standard):
+
+### **Frontend & Core**
+* ![Next.js](https://img.shields.io/badge/Next.js_15-black?style=flat&logo=next.js&logoColor=white) **Next.js 15:** ใช้ App Router ล่าสุดสำหรับการทำ Routing และ Server-side Rendering (SSR)
+* ![React](https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB) **React:** Library หลักสำหรับการสร้าง User Interface
+* ![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white) **TypeScript:** เพิ่ม Type Safety ช่วยลดบั๊กและทำให้โค้ดดูแลรักษาง่าย
+* ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white) **Tailwind CSS:** Utility-first CSS framework สำหรับการจัดหน้าและดีไซน์
+
+### **Backend & Services**
+* ![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=flat&logo=Firebase&logoColor=white) **Firebase:**
+    * **Firestore:** ฐานข้อมูล NoSQL สำหรับเก็บข้อมูลแอปพลิเคชัน
+    * **Storage:** สำหรับจัดเก็บรูปภาพและไฟล์สื่อ
+* **Next.js API Routes:** สร้าง Backend API ภายในตัวโปรเจค (Serverless Functions)
+
+### **Tools & Libraries**
+* **Lucide React:** ชุดไอคอนที่สวยงามและเบา
+* **ESLint:** ควบคุมคุณภาพโค้ดให้เป็นมาตรฐานเดียวกัน
+
+---
+
+## 📂 โครงสร้างโปรเจค (Folder Structure)
+
+โครงสร้างไฟล์ถูกจัดระเบียบตามมาตรฐาน Next.js App Router:
+
+```bash
+src/
+├── app/
+│   ├── admin/           # หน้า Dashboard สำหรับผู้ดูแลระบบ
+│   ├── api/             # API Endpoints (Auth, Data fetching)
+│   ├── components/      # Reusable UI Components (Modal, Cards, Grid)
+│   ├── layout.tsx       # Root Layout
+│   └── page.tsx         # หน้า Homepage หลัก
+├── lib/
+│   ├── firebase.ts      # การตั้งค่าและเชื่อมต่อ Firebase
+│   └── ...
+└── public/              # Static assets (Images, Icons)
+
+👨‍💻 ผู้พัฒนา (Author)
+นายสาธิต ศิริวัชน์ (Mr. Satit Siriwach)
+Role: Full Stack Developer / Educator
+Email: Satitsiriwach@gmail.com
+Developed with ❤️ for Hongson School.
+
