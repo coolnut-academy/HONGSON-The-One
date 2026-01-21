@@ -17,14 +17,14 @@ export const metadata: Metadata = {
     template: "%s | HONGSON THE ONE",
   },
   description:
-    "ศูนย์รวมเว็บแอปพลิเคชันสำหรับครูและนักเรียนโรงเรียนห้องสอนศึกษา - Web App Center for Teachers and Students",
+    "ศูนย์รวมเว็บแอปพลิเคชันสำหรับครูและนักเรียนโรงเรียนห้องสอนศึกษา ในพระอุปถัมภ์ฯ - Web App Center for Teachers and Students",
   keywords: [
     "school links",
     "education",
     "HONGSON THE ONE",
     "web app center",
     "school portal",
-    "ห้องสอนศึกษา",
+    "ห้องสอนศึกษา ในพระอุปถัมภ์ฯ",
     "แอปการศึกษา",
     "ครู",
     "นักเรียน",
