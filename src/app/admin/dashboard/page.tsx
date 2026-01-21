@@ -6,7 +6,6 @@ import Image from "next/image";
 import {
     LayoutDashboard,
     LogOut,
-    Settings,
     Plus,
     Loader2,
     Sparkles,
@@ -20,6 +19,8 @@ import {
     Globe,
     AlertTriangle,
     RefreshCw,
+    ToggleLeft,
+    ToggleRight,
 } from "lucide-react";
 import {
     getApps,
@@ -134,6 +135,7 @@ export default function AdminDashboard() {
     const [deleteConfirm, setDeleteConfirm] = useState<AppDocument | null>(null);
     const [isDeleting, setIsDeleting] = useState(false);
     const [isReordering, setIsReordering] = useState<string | null>(null);
+    const [isToggling, setIsToggling] = useState<string | null>(null);
     const [error, setError] = useState("");
     const router = useRouter();
 
@@ -245,6 +247,21 @@ export default function AdminDashboard() {
         setIsFormModalOpen(true);
     };
 
+    // Handle toggle enabled/disabled
+    const handleToggleEnabled = async (app: AppDocument) => {
+        setIsToggling(app.id!);
+        try {
+            const newEnabledState = app.isEnabled === false ? true : false;
+            await updateApp(app.id!, { isEnabled: newEnabledState });
+            await fetchApps();
+        } catch (err) {
+            console.error("Toggle enabled failed:", err);
+            setError("เปลี่ยนสถานะแอปไม่สำเร็จ");
+        } finally {
+            setIsToggling(null);
+        }
+    };
+
     if (isLoading) {
         return (
             <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 to-slate-100">
@@ -285,9 +302,6 @@ export default function AdminDashboard() {
                                 title="รีเฟรชข้อมูล"
                             >
                                 <RefreshCw className="w-5 h-5" />
-                            </button>
-                            <button className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md">
-                                <Settings className="w-5 h-5" />
                             </button>
                             <button
                                 onClick={handleLogout}
@@ -368,19 +382,20 @@ export default function AdminDashboard() {
                         /* Apps List */
                         <div className="divide-y divide-slate-100">
                             {/* Table Header (Desktop) */}
-                            <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-3 bg-slate-50/50 text-xs font-semibold text-slate-500 uppercase tracking-wider">
+                            <div className="hidden md:grid md:grid-cols-14 gap-4 px-6 py-3 bg-slate-50/50 text-xs font-semibold text-slate-500 uppercase tracking-wider">
                                 <div className="col-span-1 text-center">#</div>
-                                <div className="col-span-5">แอป</div>
+                                <div className="col-span-4">แอป</div>
                                 <div className="col-span-2">โซน</div>
+                                <div className="col-span-2 text-center">สถานะ</div>
                                 <div className="col-span-2 text-center">เรียงลำดับ</div>
-                                <div className="col-span-2 text-right">การจัดการ</div>
+                                <div className="col-span-3 text-right">การจัดการ</div>
                             </div>
 
                             {/* App Rows */}
                             {apps.map((app, index) => (
                                 <div
                                     key={app.id}
-                                    className="grid grid-cols-1 md:grid-cols-12 gap-4 px-4 sm:px-6 py-4 hover:bg-slate-50/50 transition-colors items-center"
+                                    className={`grid grid-cols-1 md:grid-cols-14 gap-4 px-4 sm:px-6 py-4 hover:bg-slate-50/50 transition-colors items-center ${app.isEnabled === false ? "opacity-60" : ""}`}
                                 >
                                     {/* Order Number */}
                                     <div className="hidden md:block col-span-1 text-center">
@@ -390,7 +405,7 @@ export default function AdminDashboard() {
                                     </div>
 
                                     {/* App Info */}
-                                    <div className="md:col-span-5 flex items-center gap-4">
+                                    <div className="md:col-span-4 flex items-center gap-4">
                                         {/* Icon */}
                                         <div
                                             className={`w-12 h-12 rounded-xl overflow-hidden flex-shrink-0 shadow-md bg-gradient-to-br ${app.color || "from-blue-500 to-purple-500"
@@ -429,6 +444,30 @@ export default function AdminDashboard() {
                                         <ZoneBadge zone={app.zone} />
                                     </div>
 
+                                    {/* Enable/Disable Toggle */}
+                                    <div className="md:col-span-2 flex items-center justify-center">
+                                        <button
+                                            onClick={() => handleToggleEnabled(app)}
+                                            disabled={isToggling === app.id}
+                                            className={`flex items-center gap-2 px-3 py-1.5 rounded-full transition-all ${app.isEnabled === false
+                                                ? "bg-slate-100 text-slate-500 hover:bg-slate-200"
+                                                : "bg-green-100 text-green-700 hover:bg-green-200"
+                                                } disabled:opacity-50`}
+                                            title={app.isEnabled === false ? "เปิดใช้งาน" : "ปิดใช้งาน"}
+                                        >
+                                            {isToggling === app.id ? (
+                                                <Loader2 className="w-4 h-4 animate-spin" />
+                                            ) : app.isEnabled === false ? (
+                                                <ToggleLeft className="w-5 h-5" />
+                                            ) : (
+                                                <ToggleRight className="w-5 h-5" />
+                                            )}
+                                            <span className="text-xs font-medium">
+                                                {app.isEnabled === false ? "ปิด" : "เปิด"}
+                                            </span>
+                                        </button>
+                                    </div>
+
                                     {/* Reorder Buttons */}
                                     <div className="md:col-span-2 flex items-center justify-center gap-1">
                                         <button
@@ -458,7 +497,7 @@ export default function AdminDashboard() {
                                     </div>
 
                                     {/* Action Buttons */}
-                                    <div className="md:col-span-2 flex items-center justify-end gap-2">
+                                    <div className="md:col-span-3 flex items-center justify-end gap-2">
                                         <button
                                             onClick={() => openEditModal(app)}
                                             className="p-2.5 rounded-xl text-blue-600 bg-blue-50 hover:bg-blue-100 transition-all"

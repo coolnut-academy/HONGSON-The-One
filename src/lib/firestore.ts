@@ -29,6 +29,7 @@ export interface AppDocument {
     zone: "student" | "teacher" | "both";
     color?: string;
     order: number;
+    isEnabled?: boolean; // Default is true (enabled)
     createdAt?: Timestamp;
     updatedAt?: Timestamp;
 }

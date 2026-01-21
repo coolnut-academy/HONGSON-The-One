@@ -169,16 +169,6 @@ body {
   border-radius: 24px;
 }
 
-/* Dark mode glass card */
-.dark .glass-card {
-  background: rgba(30, 41, 59, 0.75);
-  border: 1px solid rgba(71, 85, 105, 0.4);
-  box-shadow:
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    0 2px 8px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(71, 85, 105, 0.3);
-}
-
 .glass-card-hover {
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -190,14 +180,6 @@ body {
     0 8px 16px rgba(31, 38, 135, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
   border-color: rgba(255, 255, 255, 0.8);
-}
-
-.dark .glass-card-hover:hover {
-  box-shadow:
-    0 20px 40px rgba(0, 0, 0, 0.4),
-    0 8px 16px rgba(0, 0, 0, 0.2),
-    inset 0 1px 0 rgba(71, 85, 105, 0.4);
-  border-color: rgba(100, 116, 139, 0.6);
 }
 
 /* Premium Button Styles */
