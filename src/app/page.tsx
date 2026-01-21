@@ -1,6 +1,9 @@
 import { Suspense } from "react";
 import HomeContent from "./components/HomeContent";
 
+// Force dynamic rendering to avoid useSearchParams SSG issues
+export const dynamic = 'force-dynamic';
+
 // Loading fallback component
 function HomeLoading() {
   return (
