@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { Sparkles, Lock, Loader2, RefreshCw } from "lucide-react";
 import ZoneSwitcher from "./ZoneSwitcher";
 import AppGrid from "./AppGrid";
@@ -82,9 +83,13 @@ export default function HomeContent() {
                         {/* Logo & Title */}
                         <div className="flex items-center gap-3">
                             <div className="relative">
-                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                                    <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
-                                </div>
+                                <Image
+                                    src="/logo.png"
+                                    alt="HONGSON METAVERSE MODEL Logo"
+                                    width={48}
+                                    height={48}
+                                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg"
+                                />
                                 {/* Online indicator */}
                                 <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
                             </div>

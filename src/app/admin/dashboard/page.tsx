@@ -282,9 +282,13 @@ export default function AdminDashboard() {
                         {/* Logo & Title */}
                         <div className="flex items-center gap-3">
                             <div className="relative">
-                                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
-                                    <LayoutDashboard className="w-5 h-5 text-white" />
-                                </div>
+                                <Image
+                                    src="/logo.png"
+                                    alt="HONGSON METAVERSE MODEL Logo"
+                                    width={48}
+                                    height={48}
+                                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl shadow-lg"
+                                />
                             </div>
                             <div>
                                 <h1 className="text-lg font-bold text-gradient">
