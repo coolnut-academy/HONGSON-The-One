@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Kanit } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 // Configure Kanit font with multiple weights for versatility
 const kanit = Kanit({
@@ -85,7 +86,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="th" className={kanit.variable}>
+    <html lang="th" className={kanit.variable} suppressHydrationWarning>
       <head>
         {/* Preconnect to external resources for performance */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -93,18 +94,20 @@ export default function RootLayout({
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
       </head>
       <body className="font-kanit antialiased">
-        {/* Premium gradient background */}
-        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40" />
+        <ThemeProvider>
+          {/* Premium gradient background - Light Mode */}
+          <div className="fixed inset-0 -z-10 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950 transition-colors duration-500" />
 
-        {/* Subtle animated gradient orbs for depth */}
-        <div className="fixed inset-0 -z-10 overflow-hidden">
-          <div className="absolute -left-[40%] -top-[40%] h-[80%] w-[80%] rounded-full bg-gradient-to-br from-blue-100/40 to-purple-100/30 blur-3xl animate-float" />
-          <div className="absolute -right-[30%] -bottom-[30%] h-[70%] w-[70%] rounded-full bg-gradient-to-br from-purple-100/40 to-pink-100/30 blur-3xl animate-float-delayed" />
-          <div className="absolute left-1/2 top-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-100/20 to-blue-100/20 blur-3xl animate-pulse-slow" />
-        </div>
+          {/* Subtle animated gradient orbs for depth */}
+          <div className="fixed inset-0 -z-10 overflow-hidden">
+            <div className="absolute -left-[40%] -top-[40%] h-[80%] w-[80%] rounded-full bg-gradient-to-br from-blue-100/40 to-purple-100/30 dark:from-blue-900/20 dark:to-purple-900/15 blur-3xl animate-float" />
+            <div className="absolute -right-[30%] -bottom-[30%] h-[70%] w-[70%] rounded-full bg-gradient-to-br from-purple-100/40 to-pink-100/30 dark:from-purple-900/20 dark:to-pink-900/15 blur-3xl animate-float-delayed" />
+            <div className="absolute left-1/2 top-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-100/20 to-blue-100/20 dark:from-cyan-900/10 dark:to-blue-900/10 blur-3xl animate-pulse-slow" />
+          </div>
 
-        {/* Main content */}
-        {children}
+          {/* Main content */}
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -16,7 +16,7 @@ export default function ZoneSwitcher({
     return (
         <div className="w-full max-w-md mx-auto">
             {/* Glassmorphism container */}
-            <div className="relative p-1.5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/50 shadow-lg">
+            <div className="relative p-1.5 rounded-2xl bg-white/40 dark:bg-slate-800/40 backdrop-blur-xl border border-white/50 dark:border-slate-700/50 shadow-lg">
                 {/* Animated sliding background indicator */}
                 <div
                     className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-xl transition-all duration-500 ease-out ${currentZone === "teacher"
@@ -40,7 +40,7 @@ export default function ZoneSwitcher({
                         onClick={() => onZoneChange("teacher")}
                         className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-xl transition-all duration-300 ${currentZone === "teacher"
                             ? "text-white"
-                            : "text-slate-500 hover:text-slate-700"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                             }`}
                     >
                         <GraduationCap
@@ -57,7 +57,7 @@ export default function ZoneSwitcher({
                         onClick={() => onZoneChange("student")}
                         className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-xl transition-all duration-300 ${currentZone === "student"
                             ? "text-white"
-                            : "text-slate-500 hover:text-slate-700"
+                            : "text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-300"
                             }`}
                     >
                         <User
@@ -72,10 +72,10 @@ export default function ZoneSwitcher({
             </div>
 
             {/* Zone indicator text */}
-            <p className="text-center mt-3 text-sm text-slate-500">
+            <p className="text-center mt-3 text-sm text-slate-500 dark:text-slate-400">
                 กำลังดู:{" "}
                 <span
-                    className={`font-semibold ${currentZone === "student" ? "text-blue-600" : "text-amber-600"
+                    className={`font-semibold ${currentZone === "student" ? "text-blue-600 dark:text-blue-400" : "text-amber-600 dark:text-amber-400"
                         }`}
                 >
                     {currentZone === "student" ? "โซนนักเรียน" : "โซนครู"}

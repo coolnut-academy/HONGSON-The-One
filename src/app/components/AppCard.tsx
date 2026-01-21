@@ -38,14 +38,14 @@ export default function AppCard({ app }: AppCardProps) {
                 <div
                     className={`relative w-20 h-20 sm:w-22 sm:h-22 md:w-24 md:h-24 rounded-2xl overflow-hidden 
             bg-gradient-to-br ${app.color || "from-slate-100 to-slate-200"}
-            shadow-lg shadow-black/10
-            border border-white/60
+            shadow-lg shadow-black/10 dark:shadow-black/30
+            border border-white/60 dark:border-slate-700/60
             transition-all duration-300 ease-out
             group-hover:scale-105 group-hover:shadow-xl group-hover:shadow-black/15
             group-active:scale-95`}
                 >
                     {/* Icon image */}
-                    <div className="absolute inset-1 rounded-xl overflow-hidden bg-white/90 backdrop-blur-sm flex items-center justify-center">
+                    <div className="absolute inset-1 rounded-xl overflow-hidden bg-white/90 dark:bg-slate-800/90 backdrop-blur-sm flex items-center justify-center">
                         {app.iconUrl.startsWith("http") || app.iconUrl.startsWith("/") ? (
                             <Image
                                 src={app.iconUrl}
@@ -69,8 +69,8 @@ export default function AppCard({ app }: AppCardProps) {
                     </div>
 
                     {/* External link indicator */}
-                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <ExternalLink className="w-3 h-3 text-slate-500" />
+                    <div className="absolute -top-1 -right-1 w-5 h-5 bg-white dark:bg-slate-700 rounded-full shadow-md flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <ExternalLink className="w-3 h-3 text-slate-500 dark:text-slate-300" />
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@ export default function AppCard({ app }: AppCardProps) {
             </div>
 
             {/* App Name */}
-            <span className="text-sm sm:text-base font-medium text-slate-700 text-center line-clamp-2 max-w-[100px] sm:max-w-[120px] leading-tight group-hover:text-slate-900 transition-colors duration-300">
+            <span className="text-sm sm:text-base font-medium text-slate-700 dark:text-slate-300 text-center line-clamp-2 max-w-[100px] sm:max-w-[120px] leading-tight group-hover:text-slate-900 dark:group-hover:text-white transition-colors duration-300">
                 {app.name}
             </span>
         </button>

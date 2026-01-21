@@ -2,11 +2,12 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Sparkles, Settings, Search, Lock, Loader2, RefreshCw } from "lucide-react";
+import { Sparkles, Lock, Loader2, RefreshCw } from "lucide-react";
 import ZoneSwitcher from "./ZoneSwitcher";
 import AppGrid from "./AppGrid";
 import { AppData } from "./AppCard";
 import AdminLoginModal from "./AdminLoginModal";
+import ThemeToggle from "./ThemeToggle";
 import { getApps, AppDocument } from "@/lib/firestore";
 
 type Zone = "student" | "teacher";
@@ -74,7 +75,7 @@ export default function HomeContent() {
     return (
         <main className="min-h-screen flex flex-col pb-8">
             {/* Header Section */}
-            <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/50 shadow-sm">
+            <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 dark:bg-slate-900/80 border-b border-white/50 dark:border-slate-800/50 shadow-sm">
                 <div className="max-w-7xl mx-auto px-4 py-4">
                     {/* Top Bar with Logo and Actions */}
                     <div className="flex items-center justify-between mb-4">
@@ -85,13 +86,13 @@ export default function HomeContent() {
                                     <Sparkles className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                                 </div>
                                 {/* Online indicator */}
-                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
+                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white dark:border-slate-800" />
                             </div>
                             <div>
                                 <h1 className="text-lg sm:text-xl font-bold text-gradient">
                                     HONGSON THE ONE
                                 </h1>
-                                <p className="text-xs text-slate-500 hidden sm:block">
+                                <p className="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
                                     Web App Center
                                 </p>
                             </div>
@@ -101,17 +102,12 @@ export default function HomeContent() {
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={fetchApps}
-                                className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md"
+                                className="p-2.5 rounded-xl bg-white/60 dark:bg-slate-800/60 backdrop-blur-sm border border-white/60 dark:border-slate-700/60 text-slate-600 dark:text-slate-300 hover:bg-white/80 dark:hover:bg-slate-700/80 hover:text-slate-800 dark:hover:text-white transition-all duration-200 hover:shadow-md"
                                 title="รีเฟรช"
                             >
                                 <RefreshCw className={`w-5 h-5 ${isLoading ? "animate-spin" : ""}`} />
                             </button>
-                            <button className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md">
-                                <Search className="w-5 h-5" />
-                            </button>
-                            <button className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md">
-                                <Settings className="w-5 h-5" />
-                            </button>
+                            <ThemeToggle />
                         </div>
                     </div>
 
@@ -127,10 +123,10 @@ export default function HomeContent() {
             <div className="flex-1 max-w-7xl mx-auto w-full px-4 py-6 sm:py-8">
                 {/* Section Title */}
                 <div className="mb-6 sm:mb-8">
-                    <h2 className="text-lg sm:text-xl font-semibold text-slate-800 mb-1">
+                    <h2 className="text-lg sm:text-xl font-semibold text-slate-800 dark:text-white mb-1">
                         {currentZone === "student" ? "📚 แอปสำหรับนักเรียน" : "📋 แอปสำหรับครู"}
                     </h2>
-                    <p className="text-sm text-slate-500">
+                    <p className="text-sm text-slate-500 dark:text-slate-400">
                         {currentZone === "student"
                             ? "เข้าถึงเครื่องมือการเรียนรู้ได้ที่นี่"
                             : "จัดการและติดตามการเรียนการสอน"}
@@ -143,18 +139,18 @@ export default function HomeContent() {
                         /* Loading State */
                         <div className="flex flex-col items-center justify-center py-12">
                             <Loader2 className="w-10 h-10 text-purple-500 animate-spin mb-4" />
-                            <p className="text-slate-500">กำลังโหลดแอปพลิเคชัน...</p>
+                            <p className="text-slate-500 dark:text-slate-400">กำลังโหลดแอปพลิเคชัน...</p>
                         </div>
                     ) : error ? (
                         /* Error State */
                         <div className="flex flex-col items-center justify-center py-12">
-                            <div className="w-16 h-16 rounded-2xl bg-red-100 flex items-center justify-center mb-4">
+                            <div className="w-16 h-16 rounded-2xl bg-red-100 dark:bg-red-900/30 flex items-center justify-center mb-4">
                                 <Sparkles className="w-8 h-8 text-red-400" />
                             </div>
-                            <p className="text-red-600 mb-4">{error}</p>
+                            <p className="text-red-600 dark:text-red-400 mb-4">{error}</p>
                             <button
                                 onClick={fetchApps}
-                                className="px-4 py-2 rounded-xl bg-purple-100 text-purple-700 font-medium hover:bg-purple-200 transition-all"
+                                className="px-4 py-2 rounded-xl bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 font-medium hover:bg-purple-200 dark:hover:bg-purple-900/50 transition-all"
                             >
                                 ลองใหม่อีกครั้ง
                             </button>
@@ -173,14 +169,14 @@ export default function HomeContent() {
             {/* Footer */}
             <footer className="text-center py-4">
                 <div className="flex items-center justify-center gap-3">
-                    <p className="text-xs text-slate-400">
+                    <p className="text-xs text-slate-400 dark:text-slate-500">
                         Version 1.0.0 • Powered by{" "}
-                        <span className="font-medium text-slate-500">COOLNUT Academy</span>
+                        <span className="font-medium text-slate-500 dark:text-slate-400">COOLNUT Academy</span>
                     </p>
                     {/* Secret Admin Entrance - Subtle Lock Icon */}
                     <button
                         onClick={() => setIsLoginModalOpen(true)}
-                        className="p-1.5 rounded-lg text-slate-300 hover:text-slate-500 hover:bg-slate-100/50 transition-all duration-300 opacity-50 hover:opacity-100"
+                        className="p-1.5 rounded-lg text-slate-300 dark:text-slate-600 hover:text-slate-500 dark:hover:text-slate-400 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 transition-all duration-300 opacity-50 hover:opacity-100"
                         aria-label="Admin Login"
                         title="Admin Access"
                     >
