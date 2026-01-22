@@ -38,6 +38,7 @@ const GRADIENT_OPTIONS = [
     { value: "from-indigo-500 to-blue-600", label: "Deep Indigo", preview: "bg-gradient-to-br from-indigo-500 to-blue-600" },
     { value: "from-teal-500 to-cyan-600", label: "Teal Wave", preview: "bg-gradient-to-br from-teal-500 to-cyan-600" },
     { value: "from-red-500 to-orange-500", label: "Fire", preview: "bg-gradient-to-br from-red-500 to-orange-500" },
+    { value: "transparent", label: "Transparent", preview: "bg-white border-2 border-dashed border-slate-300" },
 ];
 
 export default function AppFormModal({
@@ -281,8 +282,8 @@ export default function AppFormModal({
                                         onClick={() => setZone("student")}
                                         disabled={isSubmitting}
                                         className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1.5 ${zone === "student"
-                                                ? "border-blue-500 bg-blue-50 text-blue-700"
-                                                : "border-slate-200 hover:border-slate-300 text-slate-600"
+                                            ? "border-blue-500 bg-blue-50 text-blue-700"
+                                            : "border-slate-200 hover:border-slate-300 text-slate-600"
                                             }`}
                                     >
                                         <GraduationCap className="w-5 h-5" />
@@ -294,8 +295,8 @@ export default function AppFormModal({
                                         onClick={() => setZone("teacher")}
                                         disabled={isSubmitting}
                                         className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1.5 ${zone === "teacher"
-                                                ? "border-purple-500 bg-purple-50 text-purple-700"
-                                                : "border-slate-200 hover:border-slate-300 text-slate-600"
+                                            ? "border-purple-500 bg-purple-50 text-purple-700"
+                                            : "border-slate-200 hover:border-slate-300 text-slate-600"
                                             }`}
                                     >
                                         <Briefcase className="w-5 h-5" />
@@ -307,8 +308,8 @@ export default function AppFormModal({
                                         onClick={() => setZone("both")}
                                         disabled={isSubmitting}
                                         className={`p-3 rounded-xl border-2 transition-all flex flex-col items-center gap-1.5 ${zone === "both"
-                                                ? "border-green-500 bg-green-50 text-green-700"
-                                                : "border-slate-200 hover:border-slate-300 text-slate-600"
+                                            ? "border-green-500 bg-green-50 text-green-700"
+                                            : "border-slate-200 hover:border-slate-300 text-slate-600"
                                             }`}
                                     >
                                         <Globe className="w-5 h-5" />
@@ -388,8 +389,8 @@ export default function AppFormModal({
                                             onClick={() => setColor(option.value)}
                                             disabled={isSubmitting}
                                             className={`w-8 h-8 rounded-lg ${option.preview} transition-all ${color === option.value
-                                                    ? "ring-2 ring-offset-2 ring-purple-500 scale-110"
-                                                    : "hover:scale-105"
+                                                ? "ring-2 ring-offset-2 ring-purple-500 scale-110"
+                                                : "hover:scale-105"
                                                 }`}
                                             title={option.label}
                                         />
