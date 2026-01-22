@@ -15,9 +15,10 @@ export interface AppData {
 
 interface AppCardProps {
     app: AppData;
+    priority?: boolean;
 }
 
-export default function AppCard({ app }: AppCardProps) {
+export default function AppCard({ app, priority = false }: AppCardProps) {
     const isEnabled = app.isEnabled !== false; // Default to true if undefined
     const isTransparent = app.color === "transparent";
 
@@ -86,7 +87,7 @@ export default function AppCard({ app }: AppCardProps) {
                                 width={128}
                                 height={128}
                                 className={`w-full h-full ${isTransparent ? "object-contain" : "object-cover"} ${!isEnabled ? "grayscale opacity-50" : ""} transition-transform duration-500 group-hover:scale-105`}
-                                unoptimized
+                                priority={priority}
                             />
                         ) : (
                             // Fallback gradient icon with first letter

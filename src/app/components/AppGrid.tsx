@@ -42,7 +42,7 @@ export default function AppGrid({
                             animationFillMode: "forwards",
                         }}
                     >
-                        <AppCard app={app} />
+                        <AppCard app={app} priority={index < 10} />
                     </div>
                 ))}
             </div>

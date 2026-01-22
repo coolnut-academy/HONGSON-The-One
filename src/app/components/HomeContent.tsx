@@ -86,12 +86,12 @@ export default function HomeContent() {
                                 {/* Liquid Glass Logo Container */}
                                 <div className="relative p-1 rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-lg">
                                     <Image
-                                        src="/logo.png?v=2"
+                                        src="/logo.png"
                                         alt="HONGSON METAVERSE MODEL Logo"
                                         width={48}
                                         height={48}
                                         className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl"
-                                        unoptimized
+                                        priority
                                     />
                                     {/* Specular highlight on logo */}
                                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none" />
