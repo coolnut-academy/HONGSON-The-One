@@ -74,7 +74,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   maximumScale: 5,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: light)", color: "#f0f4f8" },
     { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
   ],
 };
@@ -93,14 +93,36 @@ export default function RootLayout({
         <link rel="preconnect" href="https://firebasestorage.googleapis.com" />
       </head>
       <body className="font-kanit antialiased">
-        {/* Premium gradient background */}
-        <div className="fixed inset-0 -z-10 bg-gradient-to-br from-slate-50 via-blue-50/30 to-purple-50/40" />
-
-        {/* Subtle animated gradient orbs for depth */}
+        {/* Liquid Glass Background - iOS 26 Style */}
         <div className="fixed inset-0 -z-10 overflow-hidden">
-          <div className="absolute -left-[40%] -top-[40%] h-[80%] w-[80%] rounded-full bg-gradient-to-br from-blue-100/40 to-purple-100/30 blur-3xl animate-float" />
-          <div className="absolute -right-[30%] -bottom-[30%] h-[70%] w-[70%] rounded-full bg-gradient-to-br from-purple-100/40 to-pink-100/30 blur-3xl animate-float-delayed" />
-          <div className="absolute left-1/2 top-1/2 h-[50%] w-[50%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-cyan-100/20 to-blue-100/20 blur-3xl animate-pulse-slow" />
+          {/* Base gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-slate-100 via-cyan-50/50 to-purple-50/60" />
+
+          {/* Animated Liquid Orbs for Depth */}
+          <div
+            className="liquid-orb liquid-orb-cyan absolute -left-[20%] top-[10%] w-[50%] h-[50%]"
+            style={{ animationDelay: '0s' }}
+          />
+          <div
+            className="liquid-orb liquid-orb-purple absolute -right-[15%] top-[30%] w-[45%] h-[45%]"
+            style={{ animationDelay: '-4s' }}
+          />
+          <div
+            className="liquid-orb liquid-orb-pink absolute left-[30%] -bottom-[20%] w-[40%] h-[40%]"
+            style={{ animationDelay: '-7s' }}
+          />
+          <div
+            className="liquid-orb liquid-orb-cyan absolute right-[20%] top-[60%] w-[35%] h-[35%] opacity-30"
+            style={{ animationDelay: '-2s' }}
+          />
+
+          {/* Subtle Noise Texture Overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.015]"
+            style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            }}
+          />
         </div>
 
         {/* Main content */}
@@ -109,4 +131,3 @@ export default function RootLayout({
     </html>
   );
 }
-

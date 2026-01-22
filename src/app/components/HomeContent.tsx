@@ -75,43 +75,51 @@ export default function HomeContent() {
 
     return (
         <main className="min-h-screen flex flex-col pb-8">
-            {/* Header Section */}
-            <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/70 border-b border-white/50 shadow-sm">
+            {/* Liquid Glass Header */}
+            <header className="sticky top-0 z-50 glass-header">
                 <div className="max-w-7xl mx-auto px-4 py-4">
                     {/* Top Bar with Logo and Actions */}
                     <div className="flex items-center justify-between mb-4">
                         {/* Logo & Title */}
                         <div className="flex items-center gap-3">
                             <div className="relative">
-                                <Image
-                                    src="/logo.png?v=2"
-                                    alt="HONGSON METAVERSE MODEL Logo"
-                                    width={48}
-                                    height={48}
-                                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
-                                    unoptimized
-                                />
-                                {/* Online indicator */}
-                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
+                                {/* Liquid Glass Logo Container */}
+                                <div className="relative p-1 rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-lg">
+                                    <Image
+                                        src="/logo.png?v=2"
+                                        alt="HONGSON METAVERSE MODEL Logo"
+                                        width={48}
+                                        height={48}
+                                        className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl"
+                                        unoptimized
+                                    />
+                                    {/* Specular highlight on logo */}
+                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none" />
+                                </div>
+                                {/* Online indicator with glow */}
+                                <div className="absolute -bottom-0.5 -right-0.5">
+                                    <div className="w-3 h-3 bg-emerald-400 rounded-full border-2 border-white/80 shadow-lg" />
+                                    <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-60" />
+                                </div>
                             </div>
                             <div>
                                 <h1 className="text-lg sm:text-xl font-bold text-gradient">
                                     HONGSON THE ONE
                                 </h1>
-                                <p className="text-xs text-slate-500 hidden sm:block">
+                                <p className="text-xs text-slate-500/80 hidden sm:block">
                                     Web App Center
                                 </p>
                             </div>
                         </div>
 
-                        {/* Action Buttons */}
+                        {/* Action Buttons - Liquid Glass Style */}
                         <div className="flex items-center gap-2">
                             <button
                                 onClick={fetchApps}
-                                className="p-2.5 rounded-xl bg-white/60 backdrop-blur-sm border border-white/60 text-slate-600 hover:bg-white/80 hover:text-slate-800 transition-all duration-200 hover:shadow-md"
+                                className="glass-button p-2.5 rounded-xl"
                                 title="รีเฟรช"
                             >
-                                <RefreshCw className={`w-5 h-5 ${isLoading ? "animate-spin" : ""}`} />
+                                <RefreshCw className={`w-5 h-5 text-slate-600 ${isLoading ? "animate-spin" : ""}`} />
                             </button>
                         </div>
                     </div>
@@ -126,32 +134,45 @@ export default function HomeContent() {
 
             {/* Main Content Area */}
             <div className="flex-1 max-w-7xl mx-auto w-full px-4 py-6 sm:py-8">
-                {/* Section Title */}
+                {/* Section Title with Liquid Glass pill */}
                 <div className="mb-6 sm:mb-8">
-                    <h2 className="text-lg sm:text-xl font-semibold text-slate-800 mb-1">
-                        {currentZone === "student" ? "📚 แอปสำหรับนักเรียน" : "📋 แอปสำหรับครู"}
-                    </h2>
-
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/30 backdrop-blur-lg border border-white/40 shadow-sm">
+                        <span className="text-lg">
+                            {currentZone === "student" ? "📚" : "📋"}
+                        </span>
+                        <h2 className="text-base sm:text-lg font-semibold text-slate-700">
+                            {currentZone === "student" ? "แอปสำหรับนักเรียน" : "แอปสำหรับครู"}
+                        </h2>
+                    </div>
                 </div>
 
-                {/* Glass Card Container */}
+                {/* Liquid Glass Card Container */}
                 <div className="glass-card p-4 sm:p-6 md:p-8">
                     {isLoading ? (
                         /* Loading State */
                         <div className="flex flex-col items-center justify-center py-12">
-                            <Loader2 className="w-10 h-10 text-purple-500 animate-spin mb-4" />
-                            <p className="text-slate-500">กำลังโหลดแอปพลิเคชัน...</p>
+                            <div className="relative">
+                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-400/20 to-purple-400/20 backdrop-blur-xl border border-white/40 flex items-center justify-center">
+                                    <Loader2 className="w-8 h-8 text-cyan-500 animate-spin" />
+                                </div>
+                                {/* Glow effect */}
+                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-400 to-purple-400 blur-2xl opacity-20" />
+                            </div>
+                            <p className="text-slate-500 mt-4 font-medium">กำลังโหลดแอปพลิเคชัน...</p>
                         </div>
                     ) : error ? (
                         /* Error State */
                         <div className="flex flex-col items-center justify-center py-12">
-                            <div className="w-16 h-16 rounded-2xl bg-red-100 flex items-center justify-center mb-4">
-                                <Sparkles className="w-8 h-8 text-red-400" />
+                            <div className="relative">
+                                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-rose-400/20 to-orange-400/20 backdrop-blur-xl border border-white/40 flex items-center justify-center">
+                                    <Sparkles className="w-8 h-8 text-rose-400" />
+                                </div>
+                                <div className="absolute inset-0 rounded-2xl bg-rose-400 blur-2xl opacity-15" />
                             </div>
-                            <p className="text-red-600 mb-4">{error}</p>
+                            <p className="text-rose-600 mt-4 mb-4 font-medium">{error}</p>
                             <button
                                 onClick={fetchApps}
-                                className="px-4 py-2 rounded-xl bg-purple-100 text-purple-700 font-medium hover:bg-purple-200 transition-all"
+                                className="glass-button-primary px-6 py-3 rounded-xl font-medium"
                             >
                                 ลองใหม่อีกครั้ง
                             </button>
@@ -167,22 +188,24 @@ export default function HomeContent() {
                 </div>
             </div>
 
-            {/* Footer */}
+            {/* Footer with Liquid Glass Style */}
             <footer className="text-center py-4">
                 <div className="flex items-center justify-center gap-3">
-                    <p className="text-xs text-slate-400">
-                        Version 1.0.0 • Powered by{" "}
-                        <span className="font-medium text-slate-500">Mr.Satit Siriwach(Fullstack-Developer)</span>
-                    </p>
-                    {/* Secret Admin Entrance - Subtle Lock Icon */}
-                    <button
-                        onClick={() => setIsLoginModalOpen(true)}
-                        className="p-1.5 rounded-lg text-slate-300 hover:text-slate-500 hover:bg-slate-100/50 transition-all duration-300 opacity-50 hover:opacity-100"
-                        aria-label="Admin Login"
-                        title="Admin Access"
-                    >
-                        <Lock className="w-3.5 h-3.5" />
-                    </button>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-lg border border-white/30">
+                        <p className="text-xs text-slate-500">
+                            Version 1.0.0 • Powered by{" "}
+                            <span className="font-medium text-slate-600">Mr.Satit Siriwach(Fullstack-Developer)</span>
+                        </p>
+                        {/* Secret Admin Entrance - Subtle Lock Icon */}
+                        <button
+                            onClick={() => setIsLoginModalOpen(true)}
+                            className="p-1.5 rounded-lg text-slate-400/60 hover:text-slate-600 hover:bg-white/30 transition-all duration-300"
+                            aria-label="Admin Login"
+                            title="Admin Access"
+                        >
+                            <Lock className="w-3.5 h-3.5" />
+                        </button>
+                    </div>
                 </div>
             </footer>
 
@@ -192,6 +215,6 @@ export default function HomeContent() {
                 onClose={() => setIsLoginModalOpen(false)}
                 onSuccess={handleLoginSuccess}
             />
-        </main >
+        </main>
     );
 }

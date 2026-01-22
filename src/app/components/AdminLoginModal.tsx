@@ -91,68 +91,102 @@ export default function AdminLoginModal({
 
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center">
-            {/* Backdrop with blur */}
+            {/* Liquid Glass Backdrop */}
             <div
-                className="absolute inset-0 bg-slate-900/60 backdrop-blur-md animate-fade-in"
+                className="absolute inset-0 glass-backdrop animate-fade-in"
                 onClick={onClose}
             />
 
             {/* Modal Container */}
             <div
                 className="relative z-10 w-full max-w-md mx-4 animate-fade-in-up"
-                style={{ animationDuration: "0.4s" }}
+                style={{ animationDuration: "0.5s" }}
             >
-                {/* Decorative Elements */}
-                <div className="absolute -top-20 -left-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl" />
-                <div className="absolute -bottom-20 -right-20 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl" />
-
-                {/* Modal Content */}
+                {/* Decorative Liquid Glass Orbs */}
                 <div
-                    className="relative overflow-hidden rounded-3xl"
-                    style={{
-                        background: "rgba(255, 255, 255, 0.85)",
-                        backdropFilter: "blur(20px)",
-                        boxShadow:
-                            "0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.3) inset",
-                    }}
-                >
-                    {/* Header Gradient Bar */}
-                    <div className="h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500" />
+                    className="absolute -top-24 -left-24 w-48 h-48 rounded-full blur-3xl animate-float"
+                    style={{ background: 'radial-gradient(circle, rgba(14, 165, 233, 0.3) 0%, transparent 70%)' }}
+                />
+                <div
+                    className="absolute -bottom-24 -right-24 w-48 h-48 rounded-full blur-3xl animate-float"
+                    style={{ background: 'radial-gradient(circle, rgba(168, 85, 247, 0.3) 0%, transparent 70%)', animationDelay: '-4s' }}
+                />
 
-                    {/* Close Button */}
+                {/* Liquid Glass Modal Content */}
+                <div className="glass-modal relative">
+                    {/* Top Specular Highlight */}
+                    <div
+                        className="absolute top-0 left-0 right-0 h-1/3 pointer-events-none rounded-t-[36px] z-10"
+                        style={{
+                            background: 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, transparent 100%)',
+                        }}
+                    />
+
+                    {/* Header Gradient Bar - Liquid Glass Style */}
+                    <div
+                        className="h-1.5 relative overflow-hidden"
+                        style={{
+                            background: 'linear-gradient(90deg, rgba(14, 165, 233, 0.8) 0%, rgba(168, 85, 247, 0.8) 50%, rgba(236, 72, 153, 0.8) 100%)',
+                        }}
+                    >
+                        {/* Animated shimmer */}
+                        <div
+                            className="absolute inset-0 animate-shimmer"
+                            style={{
+                                background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+                                backgroundSize: '200% 100%',
+                            }}
+                        />
+                    </div>
+
+                    {/* Liquid Glass Close Button */}
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-slate-600 hover:bg-slate-100/50 transition-all duration-200"
+                        className="absolute top-4 right-4 z-20 p-2.5 rounded-xl transition-all duration-300"
+                        style={{
+                            background: 'rgba(255, 255, 255, 0.3)',
+                            backdropFilter: 'blur(12px)',
+                            border: '1px solid rgba(255, 255, 255, 0.4)',
+                            boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.6)',
+                        }}
                         aria-label="Close modal"
                     >
-                        <X className="w-5 h-5" />
+                        <X className="w-5 h-5 text-slate-500 hover:text-slate-700 transition-colors" />
                     </button>
 
-                    <div className="p-8 pt-6">
-                        {/* Icon */}
+                    <div className="p-8 pt-6 relative z-10">
+                        {/* Liquid Glass Icon */}
                         <div className="flex justify-center mb-6">
                             <div className="relative">
                                 <div
-                                    className="w-20 h-20 rounded-2xl flex items-center justify-center"
+                                    className="w-20 h-20 rounded-[24px] flex items-center justify-center relative overflow-hidden"
                                     style={{
-                                        background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
-                                        boxShadow: "0 10px 40px rgba(37, 99, 235, 0.4)",
+                                        background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%)',
+                                        boxShadow: `0 12px 40px rgba(14, 165, 233, 0.4),
+                                                    0 0 60px rgba(168, 85, 247, 0.2),
+                                                    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                                                    inset 0 -2px 4px rgba(0, 0, 0, 0.1)`,
+                                        border: '1px solid rgba(255, 255, 255, 0.3)',
                                     }}
                                 >
+                                    {/* Specular highlight on icon */}
+                                    <div
+                                        className="absolute top-0 left-0 right-0 h-1/2 rounded-t-[24px] pointer-events-none"
+                                        style={{
+                                            background: 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+                                        }}
+                                    />
                                     {showSuccess ? (
-                                        <Sparkles className="w-9 h-9 text-white animate-pulse" />
+                                        <Sparkles className="w-9 h-9 text-white animate-pulse drop-shadow-lg relative z-10" />
                                     ) : (
-                                        <Shield className="w-9 h-9 text-white" />
+                                        <Shield className="w-9 h-9 text-white drop-shadow-lg relative z-10" />
                                     )}
                                 </div>
-                                {/* Glow effect */}
+                                {/* Ambient glow */}
                                 <div
-                                    className="absolute inset-0 rounded-2xl"
+                                    className="absolute inset-0 rounded-[24px] blur-2xl opacity-50 -z-10"
                                     style={{
-                                        background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
-                                        filter: "blur(20px)",
-                                        opacity: 0.4,
-                                        zIndex: -1,
+                                        background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.8) 0%, rgba(168, 85, 247, 0.8) 100%)',
                                     }}
                                 />
                             </div>
@@ -171,15 +205,23 @@ export default function AdminLoginModal({
                         {/* Success State */}
                         {showSuccess ? (
                             <div className="text-center py-8">
-                                <div className="inline-flex items-center gap-2 text-green-600 bg-green-50 px-5 py-3 rounded-xl">
-                                    <Sparkles className="w-5 h-5" />
-                                    <span className="font-medium">เข้าสู่ระบบสำเร็จ!</span>
+                                <div
+                                    className="inline-flex items-center gap-2 px-6 py-4 rounded-2xl"
+                                    style={{
+                                        background: 'rgba(16, 185, 129, 0.15)',
+                                        backdropFilter: 'blur(12px)',
+                                        border: '1px solid rgba(16, 185, 129, 0.3)',
+                                        boxShadow: '0 4px 24px rgba(16, 185, 129, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.5)',
+                                    }}
+                                >
+                                    <Sparkles className="w-5 h-5 text-emerald-500" />
+                                    <span className="font-semibold text-emerald-600">เข้าสู่ระบบสำเร็จ!</span>
                                 </div>
                             </div>
                         ) : (
                             /* Login Form */
                             <form onSubmit={handleSubmit} className="space-y-5">
-                                {/* Secret Key Input */}
+                                {/* Liquid Glass Secret Key Input */}
                                 <div className="relative">
                                     <label
                                         htmlFor="secretKey"
@@ -197,48 +239,60 @@ export default function AdminLoginModal({
                                             onChange={(e) => setSecretKey(e.target.value)}
                                             placeholder="••••••••"
                                             disabled={isLoading}
-                                            className="w-full px-4 py-3.5 pl-12 rounded-xl border-2 border-slate-200 
-                        focus:border-purple-400 focus:ring-4 focus:ring-purple-100 
-                        outline-none transition-all duration-200
-                        bg-white/70 backdrop-blur-sm
-                        placeholder:text-slate-300
-                        disabled:bg-slate-100 disabled:cursor-not-allowed"
+                                            className="glass-input w-full pl-12 pr-4 py-4 rounded-2xl disabled:opacity-60 disabled:cursor-not-allowed"
                                             autoComplete="off"
                                         />
                                         <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
                                     </div>
                                 </div>
 
-                                {/* Error Message */}
+                                {/* Error Message - Liquid Glass Style */}
                                 {error && (
                                     <div
-                                        className="flex items-center gap-2 text-red-600 bg-red-50 px-4 py-3 rounded-xl text-sm animate-fade-in"
-                                        style={{ animationDuration: "0.2s" }}
+                                        className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm animate-fade-in"
+                                        style={{
+                                            background: 'rgba(239, 68, 68, 0.1)',
+                                            backdropFilter: 'blur(12px)',
+                                            border: '1px solid rgba(239, 68, 68, 0.2)',
+                                            boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.5)',
+                                            animationDuration: "0.2s",
+                                        }}
                                     >
-                                        <X className="w-4 h-4 flex-shrink-0" />
-                                        <span>{error}</span>
+                                        <X className="w-4 h-4 flex-shrink-0 text-rose-500" />
+                                        <span className="text-rose-600">{error}</span>
                                     </div>
                                 )}
 
-                                {/* Submit Button */}
+                                {/* Liquid Glass Primary Submit Button */}
                                 <button
                                     type="submit"
                                     disabled={isLoading}
-                                    className="w-full relative overflow-hidden group py-4 px-6 rounded-xl font-semibold text-white transition-all duration-300 disabled:opacity-70 disabled:cursor-not-allowed"
+                                    className="w-full relative overflow-hidden group py-4 px-6 rounded-2xl font-semibold text-white transition-all duration-400 disabled:opacity-70 disabled:cursor-not-allowed"
                                     style={{
-                                        background: "linear-gradient(135deg, #2563eb 0%, #7c3aed 100%)",
-                                        boxShadow: "0 8px 30px rgba(37, 99, 235, 0.4)",
+                                        background: 'linear-gradient(135deg, rgba(14, 165, 233, 0.9) 0%, rgba(168, 85, 247, 0.9) 100%)',
+                                        boxShadow: `0 8px 32px rgba(14, 165, 233, 0.4),
+                                                    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                                                    inset 0 -2px 4px rgba(0, 0, 0, 0.1)`,
+                                        border: '1px solid rgba(255, 255, 255, 0.3)',
                                     }}
                                 >
-                                    {/* Hover gradient overlay */}
+                                    {/* Top specular highlight */}
                                     <div
-                                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        className="absolute top-0 left-0 right-0 h-1/2 rounded-t-2xl pointer-events-none"
                                         style={{
-                                            background: "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%)",
+                                            background: 'linear-gradient(to bottom, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
                                         }}
                                     />
 
-                                    <span className="relative flex items-center justify-center gap-2">
+                                    {/* Hover glow effect */}
+                                    <div
+                                        className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"
+                                        style={{
+                                            background: 'linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(139, 92, 246, 0.2) 100%)',
+                                        }}
+                                    />
+
+                                    <span className="relative flex items-center justify-center gap-2 drop-shadow-sm">
                                         {isLoading ? (
                                             <>
                                                 <Loader2 className="w-5 h-5 animate-spin" />
@@ -255,10 +309,21 @@ export default function AdminLoginModal({
                             </form>
                         )}
 
-                        {/* Security Note */}
-                        <p className="text-center text-xs text-slate-400 mt-6">
-                            🔐 การเชื่อมต่อมีความปลอดภัย
-                        </p>
+                        {/* Security Note - Liquid Glass Pill */}
+                        <div className="flex justify-center mt-6">
+                            <div
+                                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full text-xs"
+                                style={{
+                                    background: 'rgba(255, 255, 255, 0.25)',
+                                    backdropFilter: 'blur(12px)',
+                                    border: '1px solid rgba(255, 255, 255, 0.35)',
+                                    boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.6)',
+                                }}
+                            >
+                                <span>🔐</span>
+                                <span className="text-slate-500">การเชื่อมต่อมีความปลอดภัย</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

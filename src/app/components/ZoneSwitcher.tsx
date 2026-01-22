@@ -15,21 +15,43 @@ export default function ZoneSwitcher({
 }: ZoneSwitcherProps) {
     return (
         <div className="w-full max-w-md mx-auto">
-            {/* Glassmorphism container */}
-            <div className="relative p-1.5 rounded-2xl bg-white/40 backdrop-blur-xl border border-white/50 shadow-lg">
-                {/* Animated sliding background indicator */}
+            {/* Liquid Glass container */}
+            <div className="relative p-1.5 rounded-[24px] glass-zone-switcher">
+                {/* Animated sliding Liquid Glass indicator */}
                 <div
-                    className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-xl transition-all duration-500 ease-out ${currentZone === "teacher"
-                        ? "left-1.5 bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/40"
-                        : "left-[calc(50%+3px)] bg-gradient-to-br from-blue-500 to-blue-600 shadow-lg shadow-blue-500/40"
+                    className={`absolute top-1.5 bottom-1.5 w-[calc(50%-6px)] rounded-[18px] transition-all duration-500 ease-out ${currentZone === "teacher"
+                            ? "left-1.5"
+                            : "left-[calc(50%+3px)]"
                         }`}
+                    style={{
+                        background: currentZone === "teacher"
+                            ? 'linear-gradient(135deg, rgba(251, 191, 36, 0.85) 0%, rgba(245, 158, 11, 0.9) 100%)'
+                            : 'linear-gradient(135deg, rgba(14, 165, 233, 0.85) 0%, rgba(59, 130, 246, 0.9) 100%)',
+                        boxShadow: currentZone === "teacher"
+                            ? `0 8px 32px rgba(251, 191, 36, 0.4),
+                               inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                               inset 0 -2px 4px rgba(0, 0, 0, 0.1)`
+                            : `0 8px 32px rgba(14, 165, 233, 0.4),
+                               inset 0 1px 1px rgba(255, 255, 255, 0.4),
+                               inset 0 -2px 4px rgba(0, 0, 0, 0.1)`,
+                        border: '1px solid rgba(255, 255, 255, 0.3)',
+                    }}
                 >
-                    {/* Glow effect */}
+                    {/* Specular highlight on indicator */}
                     <div
-                        className={`absolute inset-0 rounded-xl blur-xl opacity-60 ${currentZone === "teacher"
-                            ? "bg-amber-400"
-                            : "bg-blue-400"
-                            }`}
+                        className="absolute top-0 left-0 right-0 h-1/2 rounded-t-[18px] pointer-events-none"
+                        style={{
+                            background: 'linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)',
+                        }}
+                    />
+                    {/* Ambient glow */}
+                    <div
+                        className="absolute inset-0 rounded-[18px] blur-xl opacity-60 -z-10"
+                        style={{
+                            background: currentZone === "teacher"
+                                ? 'rgba(251, 191, 36, 0.6)'
+                                : 'rgba(14, 165, 233, 0.6)',
+                        }}
                     />
                 </div>
 
@@ -38,16 +60,19 @@ export default function ZoneSwitcher({
                     {/* Teacher Zone Button - Now First */}
                     <button
                         onClick={() => onZoneChange("teacher")}
-                        className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-xl transition-all duration-300 ${currentZone === "teacher"
-                            ? "text-white"
-                            : "text-slate-500 hover:text-slate-700"
+                        className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-[18px] transition-all duration-300 relative z-10 ${currentZone === "teacher"
+                                ? "text-white"
+                                : "text-slate-500 hover:text-slate-700"
                             }`}
                     >
                         <GraduationCap
-                            className={`w-5 h-5 transition-transform duration-300 ${currentZone === "teacher" ? "scale-110" : "scale-100"
+                            className={`w-5 h-5 transition-all duration-300 ${currentZone === "teacher"
+                                    ? "scale-110 drop-shadow-lg"
+                                    : "scale-100"
                                 }`}
                         />
-                        <span className="font-semibold text-sm sm:text-base">
+                        <span className={`font-semibold text-sm sm:text-base ${currentZone === "teacher" ? "drop-shadow-sm" : ""
+                            }`}>
                             ครู
                         </span>
                     </button>
@@ -55,32 +80,45 @@ export default function ZoneSwitcher({
                     {/* Student Zone Button - Now Second */}
                     <button
                         onClick={() => onZoneChange("student")}
-                        className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-xl transition-all duration-300 ${currentZone === "student"
-                            ? "text-white"
-                            : "text-slate-500 hover:text-slate-700"
+                        className={`flex-1 flex items-center justify-center gap-3 py-4 px-6 rounded-[18px] transition-all duration-300 relative z-10 ${currentZone === "student"
+                                ? "text-white"
+                                : "text-slate-500 hover:text-slate-700"
                             }`}
                     >
                         <User
-                            className={`w-5 h-5 transition-transform duration-300 ${currentZone === "student" ? "scale-110" : "scale-100"
+                            className={`w-5 h-5 transition-all duration-300 ${currentZone === "student"
+                                    ? "scale-110 drop-shadow-lg"
+                                    : "scale-100"
                                 }`}
                         />
-                        <span className="font-semibold text-sm sm:text-base">
+                        <span className={`font-semibold text-sm sm:text-base ${currentZone === "student" ? "drop-shadow-sm" : ""
+                            }`}>
                             นักเรียน
                         </span>
                     </button>
                 </div>
             </div>
 
-            {/* Zone indicator text */}
-            <p className="text-center mt-3 text-sm text-slate-500">
-                กำลังดู:{" "}
-                <span
-                    className={`font-semibold ${currentZone === "student" ? "text-blue-600" : "text-amber-600"
-                        }`}
+            {/* Zone indicator text with Liquid Glass pill */}
+            <div className="flex justify-center mt-4">
+                <div
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full transition-all duration-500"
+                    style={{
+                        background: 'rgba(255, 255, 255, 0.25)',
+                        backdropFilter: 'blur(16px)',
+                        border: '1px solid rgba(255, 255, 255, 0.35)',
+                        boxShadow: 'inset 0 1px 1px rgba(255, 255, 255, 0.6)',
+                    }}
                 >
-                    {currentZone === "student" ? "โซนนักเรียน" : "โซนครู"}
-                </span>
-            </p>
+                    <span className="text-sm text-slate-500">กำลังดู:</span>
+                    <span
+                        className={`font-semibold text-sm transition-colors duration-300 ${currentZone === "student" ? "text-sky-600" : "text-amber-600"
+                            }`}
+                    >
+                        {currentZone === "student" ? "โซนนักเรียน" : "โซนครู"}
+                    </span>
+                </div>
+            </div>
         </div>
     );
 }
