@@ -172,7 +172,7 @@ export default function HomeContent() {
                 <div className="flex items-center justify-center gap-3">
                     <p className="text-xs text-slate-400">
                         Version 1.0.0 • Powered by{" "}
-                        <span className="font-medium text-slate-500">COOLNUT Academy</span>
+                        <span className="font-medium text-slate-500">Mr.Satit Siriwach(Fullstack-Developer)</span>
                     </p>
                     {/* Secret Admin Entrance - Subtle Lock Icon */}
                     <button
