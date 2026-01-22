@@ -60,7 +60,7 @@ export default function AppCard({ app }: AppCardProps) {
                 >
                     {/* Icon image */}
                     <div className={`absolute ${isTransparent ? "inset-0" : "inset-1"} rounded-xl overflow-hidden ${!isTransparent ? "bg-white/90 backdrop-blur-sm" : ""} flex items-center justify-center ${!isEnabled ? "grayscale" : ""}`}>
-                        {app.iconUrl.startsWith("http") || app.iconUrl.startsWith("/") ? (
+                        {app.iconUrl.startsWith("http") || app.iconUrl.startsWith("/") || app.iconUrl.startsWith("data:") ? (
                             <Image
                                 src={app.iconUrl}
                                 alt={app.name}
@@ -78,7 +78,7 @@ export default function AppCard({ app }: AppCardProps) {
                                     }`}
                             >
                                 <span className="text-2xl sm:text-3xl font-bold text-white">
-                                    {app.name.charAt(0).toUpperCase()}
+                                    {app.name.replace(/<[^>]*>/g, '').charAt(0).toUpperCase()}
                                 </span>
                             </div>
                         )}
@@ -106,12 +106,13 @@ export default function AppCard({ app }: AppCardProps) {
             </div>
 
             {/* App Name */}
-            <span className={`text-sm sm:text-base font-medium text-center line-clamp-2 max-w-[100px] sm:max-w-[120px] leading-tight transition-colors duration-300 ${isEnabled
-                ? "text-slate-700 group-hover:text-slate-900"
-                : "text-slate-400"
-                }`}>
-                {app.name}
-            </span>
+            <span
+                className={`text-sm sm:text-base font-medium text-center max-w-[100px] sm:max-w-[120px] leading-tight transition-colors duration-300 ${isEnabled
+                    ? "text-slate-700 group-hover:text-slate-900"
+                    : "text-slate-400"
+                    }`}
+                dangerouslySetInnerHTML={{ __html: app.name }}
+            />
         </button>
     );
 }

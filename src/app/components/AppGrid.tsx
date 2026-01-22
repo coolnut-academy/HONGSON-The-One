@@ -48,11 +48,19 @@ export default function AppGrid({
             </div>
 
             {/* App count indicator */}
-            <div className="mt-8 text-center">
-                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-white/60 text-sm text-slate-500">
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                    {apps.length} แอปพลิเคชัน
+            {/* App count indicator */}
+            <div className="mt-8 flex justify-center items-center gap-3">
+                <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-green-50/50 backdrop-blur-sm border border-green-100/60 text-sm text-green-700">
+                    <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                    {apps.filter(app => app.isEnabled !== false).length} เปิดใช้งาน
                 </span>
+
+                {apps.filter(app => app.isEnabled === false).length > 0 && (
+                    <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-slate-50/50 backdrop-blur-sm border border-slate-100/60 text-sm text-slate-500">
+                        <span className="w-2 h-2 rounded-full bg-slate-400" />
+                        {apps.filter(app => app.isEnabled === false).length} ปิดใช้งาน
+                    </span>
+                )}
             </div>
         </div>
     );

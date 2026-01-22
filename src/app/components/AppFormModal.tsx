@@ -18,6 +18,7 @@ import {
 } from "lucide-react";
 import { uploadImage } from "@/lib/storage";
 import { AppDocument } from "@/lib/firestore";
+import AppCard, { AppData } from "./AppCard";
 
 type Zone = "student" | "teacher" | "both";
 
@@ -235,13 +236,31 @@ export default function AppFormModal({
                             </div>
                         </div>
 
+                        {/* Preview Section */}
+                        <div className="flex flex-col items-center justify-center p-6 mb-8 bg-slate-50/50 rounded-2xl border border-slate-100/80">
+                            <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-4">ตัวอย่างการแสดงผล (Preview)</span>
+                            <div className="pointer-events-none">
+                                <AppCard
+                                    app={{
+                                        id: "preview",
+                                        name: name || "App Name",
+                                        url: url || "#",
+                                        iconUrl: previewFile || iconUrl || "",
+                                        zone: zone,
+                                        color: color,
+                                        isEnabled: true,
+                                    }}
+                                />
+                            </div>
+                        </div>
+
                         {/* Form */}
                         <form onSubmit={handleSubmit} className="space-y-5">
                             {/* Name Field */}
                             <div>
                                 <label className="flex items-center gap-1.5 text-sm font-medium text-slate-700 mb-2">
                                     <Type className="w-4 h-4 opacity-60" />
-                                    ชื่อแอป
+                                    ชื่อแอป (รองรับ HTML เช่น &lt;br&gt; เพื่อขึ้นบรรทัดใหม่)
                                 </label>
                                 <input
                                     type="text"
@@ -433,7 +452,7 @@ export default function AppFormModal({
                         </form>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     );
 }

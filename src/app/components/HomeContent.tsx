@@ -26,7 +26,7 @@ function toAppData(doc: AppDocument): AppData {
 }
 
 export default function HomeContent() {
-    const [currentZone, setCurrentZone] = useState<Zone>("student");
+    const [currentZone, setCurrentZone] = useState<Zone>("teacher");
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [apps, setApps] = useState<AppData[]>([]);
     const [isLoading, setIsLoading] = useState(true);
@@ -84,11 +84,12 @@ export default function HomeContent() {
                         <div className="flex items-center gap-3">
                             <div className="relative">
                                 <Image
-                                    src="/logo.png"
+                                    src="/logo.png?v=2"
                                     alt="HONGSON METAVERSE MODEL Logo"
                                     width={48}
                                     height={48}
-                                    className="w-10 h-10 sm:w-12 sm:h-12 rounded-full shadow-lg"
+                                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain"
+                                    unoptimized
                                 />
                                 {/* Online indicator */}
                                 <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-white" />
@@ -130,11 +131,7 @@ export default function HomeContent() {
                     <h2 className="text-lg sm:text-xl font-semibold text-slate-800 mb-1">
                         {currentZone === "student" ? "📚 แอปสำหรับนักเรียน" : "📋 แอปสำหรับครู"}
                     </h2>
-                    <p className="text-sm text-slate-500">
-                        {currentZone === "student"
-                            ? "เข้าถึงเครื่องมือการเรียนรู้ได้ที่นี่"
-                            : "จัดการและติดตามการเรียนการสอน"}
-                    </p>
+
                 </div>
 
                 {/* Glass Card Container */}
