@@ -10,7 +10,7 @@
   --foreground: #0f172a;
   --primary-start: #0ea5e9;
   --primary-end: #a855f7;
-  
+
   /* Liquid Glass Variables */
   --glass-bg: rgba(255, 255, 255, 0.25);
   --glass-bg-hover: rgba(255, 255, 255, 0.35);
@@ -22,15 +22,13 @@
   --glass-inner-shadow: inset 0 -1px 1px rgba(0, 0, 0, 0.05);
   --glass-blur: 24px;
   --glass-blur-strong: 40px;
-  
+
   /* Specular Highlight for Liquid Glass */
-  --specular-gradient: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.1) 30%,
-    rgba(255, 255, 255, 0) 50%
-  );
-  
+  --specular-gradient: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.1) 30%,
+      rgba(255, 255, 255, 0) 50%);
+
   /* Liquid Edge Glow */
   --liquid-glow-cyan: rgba(34, 211, 238, 0.4);
   --liquid-glow-purple: rgba(168, 85, 247, 0.4);
@@ -63,6 +61,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -73,6 +72,7 @@
     opacity: 0;
     transform: translateY(24px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -84,6 +84,7 @@
     opacity: 0;
     transform: translateY(-16px) scale(0.98);
   }
+
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
@@ -91,22 +92,29 @@
 }
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0) rotate(0deg) scale(1);
   }
+
   33% {
     transform: translateY(-15px) rotate(1deg) scale(1.02);
   }
+
   66% {
     transform: translateY(-8px) rotate(-1deg) scale(0.98);
   }
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0.4;
     transform: translate(-50%, -50%) scale(1);
   }
+
   50% {
     opacity: 0.7;
     transform: translate(-50%, -50%) scale(1.15);
@@ -117,15 +125,19 @@
   0% {
     background-position: -200% center;
   }
+
   100% {
     background-position: 200% center;
   }
 }
 
 @keyframes gradient-shift {
-  0%, 100% {
+
+  0%,
+  100% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
@@ -135,6 +147,7 @@
   from {
     box-shadow: 0 0 20px var(--liquid-glow-cyan), 0 0 40px var(--liquid-glow-purple);
   }
+
   to {
     box-shadow: 0 0 35px var(--liquid-glow-purple), 0 0 60px var(--liquid-glow-cyan);
   }
@@ -142,15 +155,20 @@
 
 /* Liquid Glass Morphing Animation */
 @keyframes liquid-morph {
-  0%, 100% {
+
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
   }
+
   25% {
     border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
   }
+
   50% {
     border-radius: 50% 60% 30% 60% / 30% 70% 70% 40%;
   }
+
   75% {
     border-radius: 60% 40% 60% 40% / 70% 30% 50% 60%;
   }
@@ -162,6 +180,7 @@
     transform: scale(0);
     opacity: 0.6;
   }
+
   100% {
     transform: scale(4);
     opacity: 0;
@@ -170,15 +189,21 @@
 
 /* Glint animation for specular highlights */
 @keyframes glint {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 0;
     transform: translateX(-100%) rotate(-45deg);
   }
-  10%, 20% {
+
+  10%,
+  20% {
     opacity: 0.8;
     transform: translateX(100%) rotate(-45deg);
   }
-  30%, 100% {
+
+  30%,
+  100% {
     opacity: 0;
     transform: translateX(200%) rotate(-45deg);
   }
@@ -186,12 +211,16 @@
 
 /* Subtle rotate for depth */
 @keyframes subtle-rotate {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: rotateX(0) rotateY(0);
   }
+
   25% {
     transform: rotateX(2deg) rotateY(-2deg);
   }
+
   75% {
     transform: rotateX(-2deg) rotateY(2deg);
   }
@@ -214,14 +243,12 @@ body {
 }
 
 .text-gradient-animated {
-  background: linear-gradient(
-    135deg,
-    #0ea5e9 0%,
-    #a855f7 25%,
-    #ec4899 50%,
-    #a855f7 75%,
-    #0ea5e9 100%
-  );
+  background: linear-gradient(135deg,
+      #0ea5e9 0%,
+      #a855f7 25%,
+      #ec4899 50%,
+      #a855f7 75%,
+      #0ea5e9 100%);
   background-size: 300% 300%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -265,13 +292,11 @@ body {
   content: "";
   position: absolute;
   inset: -1px;
-  background: linear-gradient(
-    135deg,
-    var(--liquid-glow-cyan) 0%,
-    transparent 30%,
-    transparent 70%,
-    var(--liquid-glow-purple) 100%
-  );
+  background: linear-gradient(135deg,
+      var(--liquid-glow-cyan) 0%,
+      transparent 30%,
+      transparent 70%,
+      var(--liquid-glow-purple) 100%);
   border-radius: inherit;
   z-index: -1;
   opacity: 0;
@@ -346,11 +371,9 @@ body {
 
 /* Liquid Glass Primary Button */
 .glass-button-primary {
-  background: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.85) 0%,
-    rgba(168, 85, 247, 0.85) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(14, 165, 233, 0.85) 0%,
+      rgba(168, 85, 247, 0.85) 100%);
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
@@ -361,20 +384,16 @@ body {
 }
 
 .glass-button-primary::before {
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.4) 0%,
-    rgba(255, 255, 255, 0.1) 40%,
-    transparent 60%
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.1) 40%,
+      transparent 60%);
 }
 
 .glass-button-primary:hover {
-  background: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.95) 0%,
-    rgba(168, 85, 247, 0.95) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(14, 165, 233, 0.95) 0%,
+      rgba(168, 85, 247, 0.95) 100%);
   box-shadow:
     0 12px 40px rgba(14, 165, 233, 0.45),
     0 0 60px var(--liquid-glow-cyan),
@@ -486,12 +505,10 @@ body {
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.5) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.5) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
   pointer-events: none;
   border-radius: 24px 24px 0 0;
   z-index: 2;
@@ -522,11 +539,9 @@ body {
 /* Premium Button Styles - Liquid Glass Version */
 .btn-primary {
   position: relative;
-  background: linear-gradient(
-    135deg,
-    rgba(14, 165, 233, 0.9) 0%,
-    rgba(168, 85, 247, 0.9) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(14, 165, 233, 0.9) 0%,
+      rgba(168, 85, 247, 0.9) 100%);
   color: white;
   padding: 1rem 2.5rem;
   border-radius: 18px;
@@ -547,12 +562,10 @@ body {
   left: 0;
   right: 0;
   height: 50%;
-  background: linear-gradient(
-    to bottom,
-    rgba(255, 255, 255, 0.35) 0%,
-    rgba(255, 255, 255, 0.1) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0.35) 0%,
+      rgba(255, 255, 255, 0.1) 50%,
+      transparent 100%);
   pointer-events: none;
   border-radius: 18px 18px 0 0;
 }
@@ -628,15 +641,41 @@ body {
 }
 
 /* Animation delays for staggered effects */
-.delay-75 { animation-delay: 75ms; }
-.delay-100 { animation-delay: 100ms; }
-.delay-150 { animation-delay: 150ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-700 { animation-delay: 700ms; }
-.delay-1000 { animation-delay: 1000ms; }
+.delay-75 {
+  animation-delay: 75ms;
+}
+
+.delay-100 {
+  animation-delay: 100ms;
+}
+
+.delay-150 {
+  animation-delay: 150ms;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-300 {
+  animation-delay: 300ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+.delay-500 {
+  animation-delay: 500ms;
+}
+
+.delay-700 {
+  animation-delay: 700ms;
+}
+
+.delay-1000 {
+  animation-delay: 1000ms;
+}
 
 /* Selection styling */
 ::selection {
@@ -717,16 +756,310 @@ body {
   .glass-card {
     border-radius: 24px;
   }
-  
+
   .glass-modal {
     border-radius: 28px;
   }
-  
+
   .glass-icon-container {
     border-radius: 20px;
   }
-  
+
   .glass-zone-switcher {
     border-radius: 20px;
+  }
+}
+
+/* ============================================
+   DEVELOPER BADGE STYLES
+   ============================================ */
+
+/* Developer Badge Main Styling */
+.developer-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px 10px 14px;
+  background: linear-gradient(135deg,
+      rgba(16, 185, 129, 0.85) 0%,
+      rgba(34, 197, 94, 0.9) 50%,
+      rgba(45, 212, 191, 0.85) 100%);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 8px 32px rgba(16, 185, 129, 0.35),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: default;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: bottom right;
+}
+
+/* Specular Highlight for Badge */
+.developer-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      transparent 50%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Hover Effect */
+.developer-badge:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow:
+    0 12px 40px rgba(16, 185, 129, 0.45),
+    0 6px 20px rgba(0, 0, 0, 0.12),
+    0 0 50px rgba(34, 197, 94, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Code Icon Container */
+.developer-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  color: white;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Badge Content */
+.developer-badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+/* Label Text */
+.developer-badge-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.9);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Name Text */
+.developer-badge-name {
+  font-size: 13px;
+  font-weight: 500;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  line-height: 1.2;
+}
+
+/* Sparkle Icon */
+.developer-badge-sparkle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.8);
+  animation: sparkle-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+  margin-left: 4px;
+}
+
+/* Sparkle Animation */
+@keyframes sparkle-pulse {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1) rotate(0deg);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.15) rotate(15deg);
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 480px) {
+  .developer-badge-container {
+    bottom: 12px;
+    right: 12px;
+    left: 12px;
+  }
+
+  .developer-badge {
+    padding: 8px 14px 8px 10px;
+    gap: 8px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .developer-badge-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .developer-badge-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .developer-badge-label {
+    font-size: 9px;
+  }
+
+  .developer-badge-name {
+    font-size: 12px;
+  }
+
+  .developer-badge-sparkle {
+    display: none;
+  }
+}
+
+/* ============================================
+   TITLE BADGE STYLES (HONGSON THE ONE)
+   ============================================ */
+
+/* Title Badge Main Styling - Matching Developer Badge Style */
+.title-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px 6px 8px;
+  background: linear-gradient(135deg,
+      rgba(14, 165, 233, 0.9) 0%,
+      rgba(99, 102, 241, 0.9) 50%,
+      rgba(168, 85, 247, 0.9) 100%);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow:
+    0 6px 24px rgba(14, 165, 233, 0.35),
+    0 3px 12px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.5),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: default;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Specular Highlight for Title Badge */
+.title-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.4) 0%,
+      rgba(255, 255, 255, 0.15) 30%,
+      transparent 50%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+/* Hover Effect */
+.title-badge:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    0 10px 32px rgba(14, 165, 233, 0.45),
+    0 5px 16px rgba(0, 0, 0, 0.12),
+    0 0 40px rgba(99, 102, 241, 0.2),
+    inset 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+/* Title Badge Icon Container */
+.title-badge-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  color: white;
+  box-shadow:
+    inset 0 1px 1px rgba(255, 255, 255, 0.4),
+    0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+/* Title Badge Content */
+.title-badge-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+}
+
+/* Title Label */
+.title-badge-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.85);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+/* Title Name */
+.title-badge-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+  line-height: 1.2;
+  letter-spacing: 0.5px;
+}
+
+/* Title Badge Sparkle */
+.title-badge-sparkle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.9);
+  animation: sparkle-pulse 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+/* Mobile Responsive for Title Badge */
+@media (max-width: 480px) {
+  .title-badge {
+    padding: 5px 10px 5px 6px;
+    gap: 6px;
+  }
+
+  .title-badge-icon {
+    width: 24px;
+    height: 24px;
+  }
+
+  .title-badge-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .title-badge-label {
+    font-size: 7px;
+  }
+
+  .title-badge-name {
+    font-size: 12px;
+  }
+
+  .title-badge-sparkle {
+    display: none;
   }
 }

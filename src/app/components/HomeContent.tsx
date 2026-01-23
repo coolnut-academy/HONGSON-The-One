@@ -78,42 +78,70 @@ export default function HomeContent() {
             {/* Liquid Glass Header */}
             <header className="sticky top-0 z-50 glass-header">
                 <div className="max-w-7xl mx-auto px-4 py-4">
-                    {/* Top Bar with Logo and Actions */}
-                    <div className="flex items-center justify-between mb-4">
-                        {/* Logo & Title */}
-                        <div className="flex items-center gap-3">
-                            <div className="relative">
-                                {/* Liquid Glass Logo Container */}
-                                <div className="relative p-1 rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-lg">
-                                    <Image
-                                        src="/logo.png"
-                                        alt="HONGSON METAVERSE MODEL Logo"
-                                        width={48}
-                                        height={48}
-                                        className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl"
-                                        priority
-                                    />
-                                    {/* Specular highlight on logo */}
-                                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none" />
-                                </div>
-                                {/* Online indicator with glow */}
-                                <div className="absolute -bottom-0.5 -right-0.5">
-                                    <div className="w-3 h-3 bg-emerald-400 rounded-full border-2 border-white/80 shadow-lg" />
-                                    <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-60" />
-                                </div>
+                    {/* Top Bar - Logo, Title (Center), Actions */}
+                    <div className="relative flex items-center justify-between mb-4">
+                        {/* Logo - Left Side */}
+                        <div className="relative z-10">
+                            {/* Liquid Glass Logo Container */}
+                            <div className="relative p-1 rounded-2xl bg-white/30 backdrop-blur-xl border border-white/50 shadow-lg">
+                                <Image
+                                    src="/logo.png"
+                                    alt="HONGSON METAVERSE MODEL Logo"
+                                    width={48}
+                                    height={48}
+                                    className="w-10 h-10 sm:w-12 sm:h-12 object-contain rounded-xl"
+                                    priority
+                                />
+                                {/* Specular highlight on logo */}
+                                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/40 via-transparent to-transparent pointer-events-none" />
                             </div>
-                            <div>
-                                <h1 className="text-lg sm:text-xl font-bold text-gradient">
-                                    HONGSON THE ONE
-                                </h1>
-                                <p className="text-xs text-slate-500/80 hidden sm:block">
-                                    Web App Center
-                                </p>
+                            {/* Online indicator with glow */}
+                            <div className="absolute -bottom-0.5 -right-0.5">
+                                <div className="w-3 h-3 bg-emerald-400 rounded-full border-2 border-white/80 shadow-lg" />
+                                <div className="absolute inset-0 w-3 h-3 bg-emerald-400 rounded-full animate-ping opacity-60" />
                             </div>
                         </div>
 
-                        {/* Action Buttons - Liquid Glass Style */}
-                        <div className="flex items-center gap-2">
+                        {/* Title Badge - Centered */}
+                        <div className="absolute left-1/2 transform -translate-x-1/2">
+                            <div className="title-badge">
+                                {/* Globe/App Icon */}
+                                <div className="title-badge-icon">
+                                    <svg
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="2" />
+                                        <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" strokeWidth="2" />
+                                    </svg>
+                                </div>
+
+                                {/* Text Content */}
+                                <div className="title-badge-content">
+                                    <span className="title-badge-label">Web App Center</span>
+                                    <span className="title-badge-name">HONGSON THE ONE</span>
+                                </div>
+
+                                {/* Sparkle Icon */}
+                                <div className="title-badge-sparkle">
+                                    <svg
+                                        width="12"
+                                        height="12"
+                                        viewBox="0 0 24 24"
+                                        fill="currentColor"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                    >
+                                        <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Action Buttons - Right Side */}
+                        <div className="relative z-10 flex items-center gap-2">
                             <button
                                 onClick={fetchApps}
                                 className="glass-button p-2.5 rounded-xl"
@@ -188,18 +216,60 @@ export default function HomeContent() {
                 </div>
             </div>
 
-            {/* Footer with Liquid Glass Style */}
+            {/* Footer with Developer Badge - New Design */}
             <footer className="text-center py-4">
                 <div className="flex items-center justify-center gap-3">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-lg border border-white/30">
-                        <p className="text-xs text-slate-500">
-                            Version 1.0.0 • Powered by{" "}
-                            <span className="font-medium text-slate-600">Mr.Satit Siriwach(Fullstack-Developer)</span>
-                        </p>
-                        {/* Secret Admin Entrance - Subtle Lock Icon */}
+                    {/* Developer Badge */}
+                    <div className="developer-badge">
+                        {/* Code Icon */}
+                        <div className="developer-badge-icon">
+                            <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M8 5L3 12L8 19"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M16 5L21 12L16 19"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="developer-badge-content">
+                            <span className="developer-badge-label">DEVELOPER</span>
+                            <span className="developer-badge-name">ผู้พัฒนา: นายสาธิต ศิริวัชน์</span>
+                        </div>
+
+                        {/* Sparkle Icon */}
+                        <div className="developer-badge-sparkle">
+                            <svg
+                                width="16"
+                                height="16"
+                                viewBox="0 0 24 24"
+                                fill="currentColor"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path d="M12 0L14.59 9.41L24 12L14.59 14.59L12 24L9.41 14.59L0 12L9.41 9.41L12 0Z" />
+                            </svg>
+                        </div>
+
+                        {/* Admin Access Button - Hidden in the badge */}
                         <button
                             onClick={() => setIsLoginModalOpen(true)}
-                            className="p-1.5 rounded-lg text-slate-400/60 hover:text-slate-600 hover:bg-white/30 transition-all duration-300"
+                            className="ml-2 p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/20 transition-all duration-300"
                             aria-label="Admin Login"
                             title="Admin Access"
                         >
